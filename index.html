@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Invoice Generator</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    width:450px;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:25px;
+    color:#333;
+}
+
+label{
+    font-weight:bold;
+    display:block;
+    margin-bottom:6px;
+    color:#555;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    margin-bottom:18px;
+    font-size:15px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#2563eb;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.success{
+    text-align:center;
+    margin-top:15px;
+    color:green;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Invoice Generator</h2>
+
+<form id="invoiceForm">
+
+<label>Client Name</label>
+<input type="text" name="client_name" required>
+
+<label>Client Email</label>
+<input type="email" name="client_email" required>
+
+<label>Invoice Number</label>
+<input type="text" name="invoice_number" required>
+
+<label>Service</label>
+<input type="text" name="service" required>
+
+<label>Amount ($)</label>
+<input type="number" name="amount" required>
+
+<label>Due Date</label>
+<input type="date" name="due_date" required>
+
+<button type="submit">
+Generate Invoice
+</button>
+
+</form>
+
+<div class="success" id="message"></div>
+
+</div>
+
+<script>
+
+const form=document.getElementById("invoiceForm");
+
+form.addEventListener("submit",async(e)=>{
+
+e.preventDefault();
+
+const data={
+
+client_name:form.client_name.value,
+
+client_email:form.client_email.value,
+
+invoice_number:form.invoice_number.value,
+
+service:form.service.value,
+
+amount:Number(form.amount.value),
+
+due_date:form.due_date.value
+
+};
+
+await fetch("https://freelanceworkspace.app.n8n.cloud/webhook-test/Invoice Generator Automation",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify(data)
+
+});
+
+document.getElementById("message").innerHTML="✅ Invoice Submitted Successfully";
+
+form.reset();
+
+});
+
+</script>
+
+</body>
+</html>

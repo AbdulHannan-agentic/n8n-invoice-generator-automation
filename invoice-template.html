@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Invoice</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f3f4f6;
+    padding:40px;
+}
+
+.invoice{
+
+    max-width:800px;
+    margin:auto;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+
+}
+
+.header{
+
+    background:#2563eb;
+    color:white;
+    padding:40px;
+
+}
+
+.header h1{
+
+    font-size:36px;
+
+}
+
+.header p{
+
+    margin-top:8px;
+
+}
+
+.content{
+
+    padding:40px;
+
+}
+
+.row{
+
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:25px;
+
+}
+
+.box{
+
+    width:48%;
+
+}
+
+.box h3{
+
+    margin-bottom:10px;
+    color:#2563eb;
+
+}
+
+.box p{
+
+    margin:6px 0;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+    margin-top:30px;
+
+}
+
+table th{
+
+    background:#2563eb;
+    color:white;
+    padding:12px;
+
+}
+
+table td{
+
+    border:1px solid #ddd;
+    padding:12px;
+
+}
+
+.total{
+
+    margin-top:30px;
+    text-align:right;
+    font-size:26px;
+    color:#2563eb;
+    font-weight:bold;
+
+}
+
+.status{
+
+    margin-top:25px;
+    font-size:18px;
+    color:#f59e0b;
+    font-weight:bold;
+
+}
+
+.footer{
+
+    margin-top:50px;
+    text-align:center;
+    color:#666;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="invoice">
+
+<div class="header">
+
+<h1>INVOICE</h1>
+
+<p>Freelance Workspace</p>
+
+</div>
+
+<div class="content">
+
+<div class="row">
+
+<div class="box">
+
+<h3>Bill To</h3>
+
+<p><strong>Name:</strong> {{$json.client_name}}</p>
+
+<p><strong>Email:</strong> {{$json.client_email}}</p>
+
+</div>
+
+<div class="box">
+
+<h3>Invoice Details</h3>
+
+<p><strong>Invoice #:</strong> {{$json.invoice_number}}</p>
+
+<p><strong>Due Date:</strong> {{$json.due_date}}</p>
+
+</div>
+
+</div>
+
+<table>
+
+<tr>
+
+<th>Service</th>
+
+<th>Amount</th>
+
+</tr>
+
+<tr>
+
+<td>{{$json.service}}</td>
+
+<td>$ {{$json.amount}}</td>
+
+</tr>
+
+</table>
+
+<div class="total">
+
+Total : $ {{$json.amount}}
+
+</div>
+
+<div class="status">
+
+Status : {{$json.status}}
+
+</div>
+
+<div class="footer">
+
+<p>Thank you for your business ❤️</p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
